@@ -1,0 +1,319 @@
+//TODO - make all call buttons available to call
+var USER_INDEX = (function () {
+    //load clients from server
+    function loadClients(operatorId) {
+        $.ajax({
+            type: "GET"
+            , dataType: "json"
+            , "crossDomain": true
+            , "crossOrigin": true,
+            url: "http://10.8.0.1:8080/web-service-demo-1.0/operators/" + operatorId + "/clients"
+            , headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+                , 'token': localStorage.token
+            }
+            , success: addClientsInTable
+            , error: onErrorLoadClients
+        });
+    }
+
+    //error message
+    function onErrorLoadClients(err) {
+        alert("it doesn't work " + "'" + err.text + "'")
+    }
+
+    //serialize object
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            }
+            else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+    //add clients to the table
+    function addClientsInTable(data) {
+        console.log(data);
+         $('#dataTable2').DataTable({
+        "bProcessing": true,
+        "bSortable": false,
+        "aaData": data,
+        "aoColumns": [
+            { "mData": "name" },
+            { "mData": "phoneNumber"},
+            { "mData": "status" },
+            { "mRender": function ( data, type, full ) {return '<i id="fa_ok" class="fa fa-check text-success fa-2x" aria-hidden="true"></i>';}},
+            { "mData": "number2"},
+            { "mRender": function ( data, type, full ) {return '<button class="btn btn-success ladda-button" data-style="expand-right" data-toggle="modal" href="#ClientCard"><span class="ladda-label">Звонить</span></button>';}}
+            ],
+        "language": {
+            "processing": "Подождите...",
+            "search": "Поиск:",
+            "lengthMenu": "Показать _MENU_ записей",
+            "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+            "infoEmpty": "Записи с 0 до 0 из 0 записей",
+            "infoFiltered": "(отфильтровано из _MAX_ записей)",
+            "infoPostFix": "",
+            "loadingRecords": "Загрузка записей...",
+            "zeroRecords": "Записи отсутствуют.",
+            "emptyTable": "В таблице отсутствуют данные",
+            "paginate": {
+            "first": "Первая",
+            "previous": "Предыдущая",
+            "next": "Следующая",
+            "last": "Последняя"
+            },
+            "aria": {
+                "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                "sortDescending": ": активировать для сортировки столбца по убыванию"
+                }
+            }
+    });
+ 
+/*       $.each(data, function (key, clientCard) {
+            $('#dataTable2').append('<tr></tr>');
+            var lastTr = $('#dataTable2 tr:last');
+            lastTr.append('<td>' + clientCard.name + '</td>');
+            lastTr.append('<td>' + clientCard.phoneNumber + '</td>');
+            var statusText, spanClass, dateText, dateClass, iClass;
+            var dateAssign = new Date(clientCard.statusDate);
+            var dateLast = new Date(clientCard.dealMade);
+            var dateBirthday = new Date(clientCard.birthday);
+
+            function pad(s) {
+                return (s < 10) ? '0' + s : s;
+            }
+
+            var theDateAssign = pad(dateAssign.getDate()) + '/' + pad(dateAssign.getMonth() + 1) + '/' + dateAssign.getFullYear();
+            var theDateLast = pad(dateLast.getDate()) + '/' + pad(dateLast.getMonth() + 1) + '/' + dateLast.getFullYear();
+            var theDateBirthday = pad(dateBirthday.getDate()) + '/' + pad(dateBirthday.getMonth() + 1) + '/' + dateBirthday.getFullYear();
+            if (clientCard.status == 0) {
+                statusText = 'Новый клиент';
+                spanClass = 'label label-info';
+                dateText = theDateAssign;
+                dateClass = "label label-info";
+            }
+            else if (clientCard.status == 1) {
+                statusText = 'Черный список';
+                spanClass = 'label label-danger';
+                dateText = theDateAssign;
+                dateClass = "label label-danger";
+            }
+            else if (clientCard.status == 2) {
+                statusText = 'Перезвонить';
+                spanClass = 'label label-warning';
+            }
+            else if (clientCard.status == 3) {
+                statusText = 'Назначено';
+                spanClass = 'label label-primary';
+            }
+            else if (clientCard.status == 4) {
+                statusText = 'Подтвержден';
+                spanClass = 'label label-success';
+            }
+            else if (clientCard.status == 5) {
+                statusText = 'Посетивший клиент';
+                spanClass = 'label label-default';
+            }
+            else if (clientCard.status == 6) {
+                statusText = 'Клиент компании';
+                spanClass = 'label label-success';
+            }
+            else {
+                alert("there is not such a status");
+            }
+
+            if (statusText != null && spanClass != null) {
+                var td = $("<td>").addClass('hidden-xs').appendTo(lastTr);
+                $('<span>').addClass(spanClass).html(statusText).appendTo(td);
+                if (dateText != null) {
+                    $('<span>').addClass(dateClass).text(dateText).appendTo(td);
+                }
+                if (clientCard.status == 3) {
+                    var sp = $('<span>');
+                    $('<i>').addClass(iClass).text(statusText).appendTo(sp);
+                }
+            }
+            else {
+                alert("it is not a right status");
+            }
+
+            //lastTr.append('<td class="hidden-xs">' + clientCard.dialedBy + '</td>');
+            lastTr.append('<td class="hidden-xs">' + '<i id="fa_ok" class="fa fa-check text-success fa-2x" aria-hidden="true"></i>' + '</td>');
+            lastTr.append('<td class="hidden-xs">' + theDateLast + '</td>');
+            /*if (clientCard.status == 0) {
+             btnClass = 'btn btn-success call';
+             btnText = 'Звонить';
+             }
+             else if (clientCard.status == 1) {
+             btnClass = 'btn btn-default-outline disabled';
+             btnText = 'Обработан';
+             }
+             else if (clientCard.status == 2) {
+             btnClass = 'btn btn-danger-outline disabled';
+             btnText = 'Заблокирован';
+             }
+             else if (clientCard.status == 3) {
+             btnClass = 'btn btn-default-outline disabled';
+             btnText = 'Обработан';
+             }
+             else {
+             alert("it is not a right status");
+             }
+             if (btnText != null && btnClass != null) {
+             var td = $("<td>").addClass('hidden-xs').appendTo(lastTr);
+             var button = $('<button>');
+             button.addClass(btnClass).text(btnText).appendTo(td);
+             }
+
+            var btnClass = 'btn btn-success';
+            var btnText = 'Звонить';
+            var td = $("<td>").addClass('hidden-xs').appendTo(lastTr);
+            var button = $('<button>');
+            button.addClass(btnClass).text(btnText).appendTo(td);
+            button.attr('id', 'call' + clientCard.id);
+
+            $('#call' + clientCard.id).on('click', function () {
+                //callAsterisk(phoneNumber);
+                showClientCard(clientCard);
+            });
+
+        }); */
+    }
+
+    //show and fullfil the modal clientCard
+    function showClientCard(clientCard) {
+        var infoClientCard = $('#clientCard');
+        infoClientCard.find('#name').html(clientCard.name);
+        infoClientCard.find('#phoneNumber').html(clientCard.phoneNumber);
+        // infoClientCard.find('#number2').html((clientCard.number2 != null) ? clientCard.number2 : "пусто");
+        infoClientCard.find('#number2').html(clientCard.number2 || "Empty");
+        infoClientCard.find('#number3').html(clientCard.number3 || "Empty");
+        infoClientCard.find('#status').data('value', clientCard.status);
+        infoClientCard.find('#statusDate').html(clientCard.dealMade || "Empty");
+        infoClientCard.find('#birthday').html(clientCard.birthday || "Empty");
+        infoClientCard.modal('show');
+        //TODO: onclick - добавить и смотреть если изменились поля
+
+        $('#submitModal').unbind("click");
+
+        $('#submitModal').click(function () {
+            clientCard.name = $("#name").html();
+            var number2 = $("#number2").html();
+            clientCard.number2 = (number2 == 'пусто' || number2 == null) ? null : number2;
+            var number3 = $("#number3").html();
+            clientCard.number3 = (number3 == 'пусто' || number3 == null) ? null : number3;
+            // clientCard.status = $("#status").data('value');
+            clientCard.status = $("#status").editable('getValue').status;
+            // clientCard.birthday = $("#birthday").val();
+            clientCard.birthday = null;
+            saveModal(clientCard);
+            infoClientCard.modal('hide');
+        });
+    }
+
+//send JSON via PUT
+    function sendPut(clientCard) {
+        var cardJSON = JSON.stringify(clientCard);
+        $.ajax({
+            type: "PUT"
+            , dataType: "json"
+            // , "crossDomain": true
+            // , "crossOrigin": true
+            , headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+                , 'token': localStorage.token
+            }
+            , url: "http://10.8.0.1:8080/web-service-demo-1.0/clients/" + clientCard.id
+            , data: cardJSON
+            , success: function (data) {
+           //    var table = $('#dataTable2').DataTable();
+           //     table.fnClearTable();
+           //     table.fnDraw();
+           //     table.fnDestroy();
+                loadClients(getOperatorId());
+                console.log("PUT succes!");
+            }
+            , error: onErrorLoadClients
+        });
+    }
+
+//make the call to asterisk
+    function callAsterisk(phoneNumber) {
+        var url = createChanelURL(phoneNumber);
+        $.post(url, function (data) {
+            console.log(data); //TODO: обрабатывать ответ
+        }).done(function () {
+            console.log("second success");
+        }).fail(function () {
+            console.log("error");
+        });
+    }
+
+//create the url channel
+    function createChanelURL(telephoneNumber) {
+        var server = "10.8.0.1";
+        var serverLocal = "localhost";
+        var url = 'http://' + server + ':8088/ari/channels?endpoint=SIP%2Fgsm4%2F4' + telephoneNumber + '&extension=117&context=from-internal&priority=1&timeout=30&api_key=test:test';
+        return url;
+    }
+
+//get the operator ID from token
+    function getOperatorId() {
+        var decoded = jwt_decode(localStorage.token);
+        $('#user_toggle').text(decoded.name);
+        var operatorId = decoded.id;
+        return operatorId;
+    }
+
+//set editable
+    function setEditable() {
+        $.fn.editable.defaults.mode = 'inline';
+    }
+
+    function saveModal(clientCard) {
+        sendPut(clientCard);
+    }
+
+//main function
+    function init() {
+        loadClients(getOperatorId());
+        setEditable();
+        logOut();
+
+  //      $("#dataTable2").dataTable({
+  //          "sPaginationType": "full_numbers",
+  //          aoColumnDefs: [
+  //              {
+  //                  bSortable: false,
+  //                  aTargets: [0, -1]
+  //              }
+  //          ]
+  //      });
+
+
+    }
+
+//logOut the user
+    function logOut() {
+        $('#log_out').click(function () {
+            localStorage.removeItem("token");
+        });
+    }
+
+
+    return {
+        init: init
+    }
+})();
+
+$(USER_INDEX.init);

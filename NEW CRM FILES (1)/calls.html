@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      se7en - Dashboard
+    </title>
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/se7en-font.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/isotope.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/jquery.fancybox.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/fullcalendar.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/wizard.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/select2.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/morris.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/datatables.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/datepicker.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/timepicker.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/colorpicker.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/bootstrap-switch.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/bootstrap-editable.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/daterange-picker.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/typeahead.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/summernote.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/ladda-themeless.min.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/social-buttons.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/pygments.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/style.css" media="all" rel="stylesheet" type="text/css" /><link href="stylesheets/color/green.css" media="all" rel="alternate stylesheet" title="green-theme" type="text/css" /><link href="stylesheets/color/orange.css" media="all" rel="alternate stylesheet" title="orange-theme" type="text/css" /><link href="stylesheets/color/magenta.css" media="all" rel="alternate stylesheet" title="magenta-theme" type="text/css" /><link href="stylesheets/color/gray.css" media="all" rel="alternate stylesheet" title="gray-theme" type="text/css" /><link href="stylesheets/jquery.fileupload-ui.css" media="screen" rel="stylesheet" type="text/css" /><link href="stylesheets/dropzone.css" media="screen" rel="stylesheet" type="text/css" /><script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script><script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script><script src="javascripts/bootstrap.min.js" type="text/javascript"></script><script src="javascripts/raphael.min.js" type="text/javascript"></script><script src="javascripts/selectivizr-min.js" type="text/javascript"></script><script src="javascripts/jquery.mousewheel.js" type="text/javascript"></script><script src="javascripts/jquery.vmap.min.js" type="text/javascript"></script><script src="javascripts/jquery.vmap.sampledata.js" type="text/javascript"></script><script src="javascripts/jquery.vmap.world.js" type="text/javascript"></script><script src="javascripts/jquery.bootstrap.wizard.js" type="text/javascript"></script><script src="javascripts/fullcalendar.min.js" type="text/javascript"></script><script src="javascripts/gcal.js" type="text/javascript"></script><script src="javascripts/jquery.dataTables.min.js" type="text/javascript"></script><script src="javascripts/datatable-editable.js" type="text/javascript"></script><script src="javascripts/jquery.easy-pie-chart.js" type="text/javascript"></script><script src="javascripts/excanvas.min.js" type="text/javascript"></script><script src="javascripts/jquery.isotope.min.js" type="text/javascript"></script><script src="javascripts/isotope_extras.js" type="text/javascript"></script><script src="javascripts/modernizr.custom.js" type="text/javascript"></script><script src="javascripts/jquery.fancybox.pack.js" type="text/javascript"></script><script src="javascripts/select2.js" type="text/javascript"></script><script src="javascripts/styleswitcher.js" type="text/javascript"></script><script src="javascripts/wysiwyg.js" type="text/javascript"></script><script src="javascripts/typeahead.js" type="text/javascript"></script><script src="javascripts/summernote.min.js" type="text/javascript"></script><script src="javascripts/jquery.inputmask.min.js" type="text/javascript"></script><script src="javascripts/jquery.validate.js" type="text/javascript"></script><script src="javascripts/bootstrap-fileupload.js" type="text/javascript"></script><script src="javascripts/bootstrap-datepicker.js" type="text/javascript"></script><script src="javascripts/bootstrap-timepicker.js" type="text/javascript"></script><script src="javascripts/bootstrap-colorpicker.js" type="text/javascript"></script><script src="javascripts/bootstrap-switch.min.js" type="text/javascript"></script><script src="javascripts/typeahead.js" type="text/javascript"></script><script src="javascripts/spin.min.js" type="text/javascript"></script><script src="javascripts/ladda.min.js" type="text/javascript"></script><script src="javascripts/moment.js" type="text/javascript"></script><script src="javascripts/mockjax.js" type="text/javascript"></script><script src="javascripts/bootstrap-editable.min.js" type="text/javascript"></script><script src="javascripts/xeditable-demo-mock.js" type="text/javascript"></script><script src="javascripts/xeditable-demo.js" type="text/javascript"></script><script src="javascripts/address.js" type="text/javascript"></script><script src="javascripts/daterange-picker.js" type="text/javascript"></script><script src="javascripts/date.js" type="text/javascript"></script><script src="javascripts/morris.min.js" type="text/javascript"></script><script src="javascripts/skycons.js" type="text/javascript"></script><script src="javascripts/fitvids.js" type="text/javascript"></script><script src="javascripts/jquery.sparkline.min.js" type="text/javascript"></script><script src="javascripts/dropzone.js" type="text/javascript"></script><script src="javascripts/main.js" type="text/javascript"></script><script src="javascripts/respond.js" type="text/javascript"></script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  </head>
+  <body class="page-header-fixed bg-1">
+    <div class="modal-shiftfix">
+		      <!-- Navigation -->
+      <div class="navbar navbar-fixed-top scroll-hide">
+        <div class="container-fluid top-bar">
+          <div class="pull-right">
+            <ul class="nav navbar-nav pull-right">
+            <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img width="34" height="34" src="images/image-iso7.png" />John Smith<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">
+                    <i class="fa fa-user"></i>Мой аккаунт</a>
+                  </li>                
+                  <li><a href="login1.html">
+                    <i class="fa fa-sign-out"></i>Выход</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="logo" href="index.html">se7en</a>
+          <form class="navbar-form form-inline col-lg-2 hidden-xs">
+            <input class="form-control" placeholder="Поиск..." type="text">
+          </form>
+        </div>
+        <div class="container-fluid main-nav clearfix">
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <a href="userindex.html"><span aria-hidden="true" class="se7en-home"></span>Рабочий стол</a>
+              </li>
+              <li><a href="client.html">
+                <span aria-hidden="true" class="se7en-charts"></span>Контакты</a>
+              </li>              
+              <li><a class="current" href="calls.html">
+                <span class="fa fa-phone"></span>Звонки</a>
+              </li>
+              <li class="dropdown"><a data-toggle="dropdown" href="#">
+                <span aria-hidden="true" class="se7en-forms"></span>Огранайзер<b class="caret"></b></a>
+                <ul class="dropdown-menu">                 
+                  <li>
+                    <a href="calendar.html">Календарь</a>
+                  </li>
+                  <li><a href="tasks.html">
+                    <span class="notifications label label-warning">New</span>
+                    <p>
+                      Задачи
+                    </p></a>
+        
+                </ul>
+              </li>
+              <li><a href="settings.html">
+                <span aria-hidden="true" class="se7en-gear"></span>Настройки</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Navigation -->
+       <div class="container-fluid main-content">
+        <div class="page-title">
+          <h1>
+           Таблица CDR
+           </h1>
+        <!-- DataTables Example -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="heading">
+                <i class="fa fa-table"></i> Звонки клиентам
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-bordered table-striped" id="dataTable1">
+                  <thead>
+                    <th class="check-header hidden-xs">
+                      <label><input id="checkAll" name="checkAll" type="checkbox"><span></span></label>
+                    </th>
+                    <th>
+                      От Кого
+                    </th>
+                    <th>
+                      Кому
+                    </th>
+                    <th class="hidden-xs">
+                     Используемый канал
+                    </th>
+                    <th class="hidden-xs">
+                      T(c)
+                    </th>
+                    <th class="hidden-xs">
+                      Результат звонка
+                    </th>
+                    <th class="hidden-xs">
+	                  Запись разговора
+                    </th>               
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Петров Алексей (101)
+                      </td>
+                      <td>
+                        Сидоров Роман Иванович (+38 024 543 19 12)
+                      </td>
+                      <td class="hidden-xs">
+                        Линия GSM 1 (+38 050 777 77 77)
+                      </td>
+                      <td class="hidden-xs">
+                        00:16
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                        <a><span class="fa fa-caret-square-o-right"> Прослушать</span></a>
+                      </td>
+                      </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Алексеева Ольга (104)
+                      </td>
+                      <td>
+                        Николаев Роман Михайлович (+38 004 777 16 79)
+                      </td>
+                      <td class="hidden-xs">
+                        john@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        00:00
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-danger">
+                         Номер отключен                  
+                        </div>
+                      </td>
+                      <td>                       
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                      <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label> 
+                      </td>
+                      <td>
+                       Петров Алексей (101)
+                      </td>
+                      <td>
+                        Николаев Роман Михайлович (+38 004 777 16 79)
+                      </td>
+                      <td class="hidden-xs">
+                        olivia@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        06:02
+                      </td>
+                      <td class="hidden-xs">
+                       <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                       <a><span class="fa fa-caret-square-o-right"> Прослушать</span></a>
+                      </td>
+                                          </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Петров Алексей (101)
+                      </td>
+                      <td>
+                        Stabler
+                      </td>
+                      <td class="hidden-xs">
+                        elliot@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        03:20
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">                    
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Maggie
+                      </td>
+                      <td>
+                        Smith
+                      </td>
+                      <td class="hidden-xs">
+                        maggie@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        00:00
+                      </td>
+                        <td class="hidden-xs">
+                        <div class="alertcdr alert-warning">
+                         Занято                  
+                        </div>
+                        </td>
+                      <td class="hidden-xs">
+                      </td>
+                                         </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Sara
+                      </td>
+                      <td>
+                        Johnson
+                      </td>
+                      <td class="hidden-xs">
+                        sara@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        00:15
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                        </td>
+                      <td class="hidden-xs">
+                      </td>
+                                         </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Michael
+                      </td>
+                      <td>
+                        Gold
+                      </td>
+                      <td class="hidden-xs">
+                        michael@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        00:00
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-info">
+                         Без ответа                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                       <a><span class="fa fa-caret-square-o-right"> Прослушать</span></a>
+                      </td>
+                       </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Rita
+                      </td>
+                      <td>
+                        Johnson
+                      </td>
+                      <td class="hidden-xs">
+                        rita@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        00:44
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                      </td>
+                                         </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Dexter
+                      </td>
+                      <td>
+                        Morgan
+                      </td>
+                      <td class="hidden-xs">
+                        dexter@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        01:15
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                      </td>
+                                          </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Ben
+                      </td>
+                      <td>
+                        Miller
+                      </td>
+                      <td class="hidden-xs">
+                        ben@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        02:59
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                      <a><span class="fa fa-caret-square-o-right"> Прослушать</span></a>
+                      </td>
+                                       </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Barbara
+                      </td>
+                      <td>
+                        Fisk
+                      </td>
+                      <td class="hidden-xs">
+                        barbara@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        00:45
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                        </td>
+                      <td class="hidden-xs">
+                      </td>                
+                    </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Jack
+                      </td>
+                      <td>
+                        McCoy
+                      </td>
+                      <td class="hidden-xs">
+                        jack@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        03:15
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                      </td>
+                                       </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Karen
+                      </td>
+                      <td>
+                        Fuller
+                      </td>
+                      <td class="hidden-xs">
+                        karen@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        22:02
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                      </td>
+                                        </tr>
+                    <tr>
+                      <td class="check hidden-xs">
+                        <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                      </td>
+                      <td>
+                        Denise
+                      </td>
+                      <td>
+                        Compton
+                      </td>
+                      <td class="hidden-xs">
+                        denise@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        15:45
+                      </td>
+                      <td class="hidden-xs">
+                        <div class="alertcdr alert-success">
+                         Отвеченый                  
+                        </div>
+                      </td>
+                      <td class="hidden-xs">
+                      </td>
+                                          </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end DataTables Example -->
+      </div>
+    </div>
+    <div class="style-selector">
+      <div class="style-selector-container">
+        <h2>
+          Layout Style
+        </h2>
+        <select name="layout"><option value="fluid">Fluid</option><option value="boxed">Boxed</option></select>
+        <h2>
+          Navigation Style
+        </h2>
+        <select name="nav"><option value="top">Top</option><option value="left">Left</option></select>
+        <h2>
+          Color Options
+        </h2>
+        <ul class="color-options clearfix">
+          <li>
+            <a class="blue" href="javascript:chooseStyle('none', 30)"></a>
+          </li>
+          <li>
+            <a class="green" href="javascript:chooseStyle('green-theme', 30)"></a>
+          </li>
+          <li>
+            <a class="orange" href="javascript:chooseStyle('orange-theme', 30)"></a>
+          </li>
+          <li>
+            <a class="magenta" href="javascript:chooseStyle('magenta-theme', 30)"></a>
+          </li>
+          <li>
+            <a class="gray" href="javascript:chooseStyle('gray-theme', 30)"></a>
+          </li>
+        </ul>
+        <h2>
+          Background Patterns
+        </h2>
+        <ul class="pattern-options clearfix">
+          <li>
+            <a class="active" href="#" id="bg-1"></a>
+          </li>
+          <li>
+            <a href="#" id="bg-2"></a>
+          </li>
+          <li>
+            <a href="#" id="bg-3"></a>
+          </li>
+          <li>
+            <a href="#" id="bg-4"></a>
+          </li>
+          <li>
+            <a href="#" id="bg-5"></a>
+          </li>
+        </ul>
+        <div class="style-toggle closed">
+          <span aria-hidden="true" class="se7en-gear"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

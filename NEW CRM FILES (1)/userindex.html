@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> se7en - Dashboard </title>
+    <!--<link href="http://fonts.googleapis.com/css?family=Lato" media="all" rel="stylesheet" type="text/css"/>-->
+    <link href="stylesheets/bootstrap.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/bootstrap-editable.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/datatables.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/font-lato.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/se7en-font.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/style.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="stylesheets/bootstrap-datetimepicker.css" media="all" rel="stylesheet" type="text/css"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8"
+          name="viewport">
+</head>
+
+<body class="page-header-fixed bg-1">
+<div class="modal-shiftfix">
+    <!-- Navigation -->
+    <div class="navbar navbar-fixed-top scroll-hide">
+        <div class="container-fluid top-bar">
+            <div class="pull-right">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown user hidden-xs">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img width="34" height="34"
+                                                                                         src="images/image-iso7.png"/>
+                            <spam id="user_toggle"></spam>
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#"> <i class="fa fa-user"></i>Мой аккаунт</a>
+                            </li>
+                            <li>
+                                <a href="login.html" id="log_out"> <i class="fa fa-sign-out"></i>Выход</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span
+                    class="icon-bar"></span></button>
+            <a class="logo" href="">se7en</a>
+            <form class="navbar-form form-inline col-lg-2 hidden-xs">
+                <input class="form-control" placeholder="Поиск..." type="text"></form>
+        </div>
+        <!--<div class="container-fluid main-nav clearfix">-->
+            <!--<div class="nav-collapse">-->
+                <!--<ul class="nav">-->
+                    <!--<li><a class="current" href="userindex.html"><span aria-hidden="true" class="se7en-home"></span>Рабочий-->
+                        <!--стол</a></li>-->
+                    <!--<li>-->
+                        <!--<a href=""> <span aria-hidden="true" class="se7en-charts"></span>Контакты</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href=""> <span class="fa fa-phone"></span>Звонки</a>-->
+                    <!--</li>-->
+                    <!--<li class="dropdown">-->
+                        <!--<a data-toggle="dropdown" href="#"> <span aria-hidden="true" class="se7en-forms"></span>Огранайзер<b-->
+                                <!--class="caret"></b></a>-->
+                        <!--<ul class="dropdown-menu">-->
+                            <!--<li><a href="">Календарь</a></li>-->
+                            <!--<li>-->
+                                <!--<a href=""> <span class="notifications label label-warning">New</span>-->
+                                    <!--<p> Задачи </p>-->
+                                <!--</a>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="settings.html"> <span aria-hidden="true" class="se7en-gear"></span>Настройки</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <!-- End Navigation -->
+    <div class="container-fluid main-content">
+        <!-- Call task list -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="widget-container fluid-height">
+                    <div class="heading"><i class="fa fa-toggle-down"></i>Таблица номеров в обработку</div>
+                    <div class="widget-content">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        <a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse"
+                                           href="#collapseOne">
+                                            <div class="caret pull-right"></div>
+                                            1. Запланировано на сегодня / Назначено супервизором </a>
+                                    </div>
+                                </div>
+                                <div class="panel-collapse collapse in" id="collapseOne">
+                                    <div class="panel-body">
+                                        <!-- DataTables Example -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="widget-container fluid-height clearfix">
+                                                    <div class="widget-content padded clearfix">
+                                                        <table class="table table-basic table-striped" id="dataTable2" width="100%">
+                                                            <thead>
+                                                            <th><b>ФИО клиента</b></th>
+                                                            <th><b>Контактный телефон </b></th>
+                                                            <th class="hidden-xs"><b> Статус клиента</b></th>
+                                                            <th class="hidden-xs"><b> Инфо</b></th>
+                                                            <th class="hidden-xs"><b> Состояние</b></th>
+                                                            <th class="hidden-xs"><b> Дата последних изменений</b></th>
+                                                            <th class="hidden-xs" data-toggle="modal"
+                                                                data-target="#clientCard"> Звонить
+                                                            </th>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end DataTables Example -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        <a class="accordion-toggle collapsed" data-parent="#accordion"
+                                           data-toggle="collapse" href="#collapseTwo">
+                                            <div class="caret pull-right"></div>
+                                            2. Таблица записей клиентов на посещение</a>
+                                    </div>
+                                </div>
+                                <div class="panel-collapse collapse" id="collapseTwo">
+                                    <div class="panel-body">
+                                        <!-- Striped Table -->
+                                        <div class="col-lg-4">
+                                            <div class="widget-container fluid-height clearfix">
+                                                <div class="heading"><i class="fa fa-table"></i>СЕГОДНЯ <span
+                                                        class="date date-today"></span></div>
+
+                                                <div class="widget-content padded clearfix">
+                                                    <table class="table table-bordered table-striped" width="100%"
+                                                           id="tabToday">
+                                                        <thead>
+                                                        <th> Время</th>
+                                                        <!--<th> Всего мест</th>-->
+                                                        <th> Свободных мест</th>
+                                                        <!--<th> Бонус</th>-->
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="widget-container fluid-height clearfix">
+                                                <div class="heading"><i class="fa fa-table"></i>ЗАВТРА <span
+                                                        class="date date-tomorrow"></span></div>
+
+                                                <div class="widget-content padded clearfix">
+                                                    <table class="table table-bordered table-striped" width="100%"
+                                                           id="tabTomorrow">
+                                                        <thead>
+                                                        <th> Время</th>
+                                                        <!--<th> Всего мест</th>-->
+                                                        <th> Свободных мест</th>
+                                                        <!--<th> Бонус</th>-->
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="widget-container fluid-height clearfix">
+                                                <div class="heading"><i class="fa fa-table"></i>ПОСЛЕЗАВТРА <span
+                                                        class="date date-afterTomorrow"></span></div>
+
+                                                <div class="widget-content padded clearfix">
+                                                    <table class="table table-bordered table-striped" width="100%"
+                                                           id="tabAfterTomorrow">
+                                                        <thead>
+                                                        <th> Время</th>
+                                                        <!--<th> Всего мест</th>-->
+                                                        <th> Свободных мест</th>
+                                                        <!--<th> Бонус</th>-->
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of call task list -->
+</div>
+</div>
+</div>
+
+
+<!-- Карточка клиента -->
+<div class="modal fade" id="clientCard">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <i class="fa fa-info-circle"></i> Информация о клиенте
+                </h4></div>
+            <div class="modal-body">
+                <div class="widget-container fluid-height">
+                    <div class="heading tabs">
+                        <ul class="nav nav-tabs" data-tabs="tabs" id="tabs">
+                            <li class="active"><a data-toggle="tab" href="#tab1"><i
+                                    class="fa fa-user"></i><span>Общая информ.</span></a></li>
+                            <li><a data-toggle="tab" href="#tab2"><i class="fa fa-address-card"></i><span>Контакты руководства</span></a>
+                            </li>
+                            <li><a data-toggle="tab" href="#tab3"><i class="fa fa-user-plus"></i><span>Детали</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content padded" id="my-tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <h3>
+                                Данные о клиенте
+                               <div class="btn-group pull-right">
+                                    <button class="btn btn-warning-outline" id="btnCallBack" data-toggle="modal"
+                                            data-target="#myModal">Перезвонить
+                                    </button>
+
+                                    <button class="btn btn-danger-outline dropdown-toggle"
+                                            data-toggle="dropdown">
+                                        <i class="fa fa-bars"></i>Статус <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a id="btnBlockList" data-toggle="modal"
+                                               data-target="#myModalBlock"><i class="fa fa-ban"></i>Блок лист</a>
+                                        </li>
+                                        <li>
+                                            <a id="btnConfirmed" data-toggle="modal"
+                                               data-target="#myModalConfirm"><i class="fa fa-check"></i>Клиент компании</a>
+                                        </li>
+                                        <li>
+                                            <a id="btnStarClient" data-toggle="modal"
+                                               data-target="#myModalStar"><i class="fa fa-star"></i>Агрохолдинг</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                            </h3>
+                            <table class="table table-bordered table-striped editable-form" id="user"
+                                   style="clear: both">
+                                <tbody>
+                                <tr>
+                                    <td width="35%"> Предприятие</td>
+                                    <td>
+                                        <a href="#" id="company"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="35%"> Контактное лицо</td>
+                                    <td>
+                                        <a href="#" id="client"></a>
+                                    </td>
+                                </tr>
+                                <tr class="status-row">
+                                    <td> Статус клиента</td>
+                                    <td>
+                                        <a href="#" id="status"></a>
+                                        <span id="statusDate"></span>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-group btn-danger-outline fa fa-times"
+                                                    id="deleteStatus"></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Основной телефон</td>
+                                    <td>
+                                        <a href="#" id="phoneNumber"></a>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success-outline fa fa-phone"
+                                                    id="btnPhoneNum"></button>
+                                            <!--<button class="btn btn-success-outline fa fa-plus-circle"></button>-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Электронная почта</td>
+                                    <td>
+                                        <a href="#" id="Email"></a>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-warning-outline fa fa-envelope-o"
+                                                    id="btnEmail"></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="35%"> Область</td>
+                                    <td>
+                                        <a href="#" id="area"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="35%"> Район</td>
+                                    <td>
+                                        <a href="#" id="district"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Адрес</td>
+                                    <td>
+                                        <a href="#" id="adress"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Информация (заметки)</td>
+                                    <td><a href="#" id="info"></a></td>
+                                </tr>
+                                    <tr>
+                                    <td> Результат переговоров</td>
+                                    <td><a href="#" id="talkresult"></a></td>
+                                </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" id="submitModal">Сохранить</button>
+                                <button class="btn btn-default-outline" data-dismiss="modal" type="button" id="closeModal">Закрыть
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                          <h3>
+                                Руководители
+                               <div class="btn-group pull-right">
+                                    <button class="btn btn-warning-outline" id="btnCallBack" data-toggle="modal"
+                                            data-target="#myModal">Перезвонить
+                                    </button>
+
+                                    <button class="btn btn-danger-outline dropdown-toggle"
+                                            data-toggle="dropdown">
+                                        <i class="fa fa-bars"></i>Статус <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a id="btnBlockList" data-toggle="modal"
+                                               data-target="#myModalBlock"><i class="fa fa-ban"></i>Блок лист</a>
+                                        </li>
+                                        <li>
+                                            <a id="btnConfirmed" data-toggle="modal"
+                                               data-target="#myModalConfirm"><i class="fa fa-check"></i>Клиент компании</a>
+                                        </li>
+                                        <li>
+                                            <a id="btnStarClient" data-toggle="modal"
+                                               data-target="#myModalStar"><i class="fa fa-star"></i>Агрохолдинг</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                            </h3>
+                            <table class="table table-bordered table-striped editable-form" id="user"
+                                   style="clear: both">
+                                <tbody>
+                                <tr>
+                                    <td width="40%"> ФИО руководителя</td>
+                                    <td>
+                                        <a href="#" id="headname"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Телефон руководителя</td>
+                                    <td>
+                                        <a href="#" id="headnumber"></a>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success-outline fa fa-phone"
+                                                    id="btnPhoneNum"></button>
+                                            <!--<button class="btn btn-success-outline fa fa-plus-circle"></button>-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> День Рожд. руководителя</td>
+                                    <td>
+                                        <a href="#" id="birthday"></a>
+                                    </td>
+                                </tr>
+
+                                  <tr>
+                                    <td> ФИО гл. инженера</td>
+                                    <td>
+                                        <a href="#" id="engineername"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Телефон гл. инженера</td>
+                                    <td>
+                                        <a href="#" id="engineernumber"></a>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success-outline fa fa-phone"
+                                                    id="btnPhoneNum"></button>
+                                            <!--<button class="btn btn-success-outline fa fa-plus-circle"></button>-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> День Рожд. инженера</td>
+                                    <td>
+                                        <a href="#" id="birthday"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="35%"> Дополнительный контакт</td>
+                                    <td>
+                                        <a href="#" id="additionalcontact"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Дополнительный телефон</td>
+                                    <td>
+                                        <a href="#" id="additionalnumber"></a>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success-outline fa fa-phone"
+                                                    id="btnPhoneNum"></button>
+                                            <!--<button class="btn btn-success-outline fa fa-plus-circle"></button>-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                
+                            </table>
+                             <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" id="submitModal">Сохранить</button>
+                                <button class="btn btn-default-outline" data-dismiss="modal" type="button" id="closeModal">Закрыть
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                            <h3>
+                                Запись на посещение
+                            </h3>
+                           <table class="table table-bordered table-striped editable-form" id="user"
+                                   style="clear: both">
+                                <tbody>
+                                <tr>
+                                    <td width="55%"> ФИО руководителя</td>
+                                    <td>
+                                        <a href="#" id="company"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Телефон руководителя</td>
+                                    <td>
+                                        <a href="#" id="phoneNumber"></a>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success-outline fa fa-phone"
+                                                    id="btnPhoneNum"></button>
+                                            <!--<button class="btn btn-success-outline fa fa-plus-circle"></button>-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> День Рожд. руководителя</td>
+                                    <td>
+                                        <a href="#" id="birthday"></a>
+                                    </td>
+                                </tr>
+
+                                  <tr>
+                                    <td width="35%"> ФИО гл. инженера</td>
+                                    <td>
+                                        <a href="#" id="company"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Телефон гл. инженера</td>
+                                    <td>
+                                        <a href="#" id="phoneNumber"></a>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success-outline fa fa-phone"
+                                                    id="btnPhoneNum"></button>
+                                            <!--<button class="btn btn-success-outline fa fa-plus-circle"></button>-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> День Рожд. инженера</td>
+                                    <td>
+                                        <a href="#" id="birthday"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="35%"> Дополнительный контакт</td>
+                                    <td>
+                                        <a href="#" id="company"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Дополнительный телефон</td>
+                                    <td>
+                                        <a href="#" id="phoneNumber"></a>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-success-outline fa fa-phone"
+                                                    id="btnPhoneNum"></button>
+                                            <!--<button class="btn btn-success-outline fa fa-plus-circle"></button>-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                
+                            </table>
+                             <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" id="submitModal">Сохранить</button>
+                                <button class="btn btn-default-outline" data-dismiss="modal" type="button" id="closeModal">Закрыть
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Конец карточки клиента -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Перезвонить</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <label for="dateCallBack" class="col-md-12 control-label">Выберите дату и время</label>
+                        <div class="input-group date form_datetime" id="dateTimePicker1"
+                             data-link-field="dateCallBack">
+                            <input class="form-control" size="14" type="text" readonly id="dateCallBack">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <!--<input type="hidden" id="dateCallBack" value="" /><br/>-->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="submitCallBack">Назначить
+                </button>
+                <button type="button" class="btn btn-default-outline" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal -->
+<div id="myModal2" class="modal fade">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Перезвонить</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <p>
+                        Вы подтверждаете занесение клиента в блок лист?
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="submitBlockList">Да</button>
+                <button type="button" class="btn btn-default-outline" data-dismiss="modal">Нет</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="javascripts/jquery-1.10.3-ui.js" type="text/javascript"></script>
+<script src="javascripts/bootstrap.min.js" type="text/javascript"></script>
+<!--<script src="javascripts/moment.js" type="text/javascript"></script>-->
+<script src="javascripts/moment.min.js" type="text/javascript"></script>
+<script src="javascripts/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+<script src="javascripts/fullcalendar.min.js" type="text/javascript"></script>
+<script src="javascripts/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="javascripts/jquery.dataTables.js" type="text/javascript"></script>
+<script src="javascripts/datatable-editable.js" type="text/javascript"></script>
+<script src="javascripts/jquery.easy-pie-chart.js" type="text/javascript"></script>
+<script src="javascripts/jquery.isotope.min.js" type="text/javascript"></script>
+<script src="javascripts/modernizr.custom.js" type="text/javascript"></script>
+<script src="javascripts/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script src="javascripts/select2.js" type="text/javascript"></script>
+<script src="javascripts/jquery.inputmask.min.js" type="text/javascript"></script>
+<script src="javascripts/jquery.validate.js" type="text/javascript"></script>
+<script type="text/javascript" src="javascripts/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="javascripts/bootstrap-datetimepicker.ru.js" charset="UTF-8"></script>
+<script src="javascripts/bootstrap-timepicker.js" type="text/javascript"></script>
+<script src="javascripts/bootstrap-colorpicker.js" type="text/javascript"></script>
+<script src="javascripts/ladda.min.js" type="text/javascript"></script>
+<script src="javascripts/mockjax.js" type="text/javascript"></script>
+<script src="javascripts/bootstrap-editable.min.js" type="text/javascript"></script>
+<script src="javascripts/daterange-picker.js" type="text/javascript"></script>
+<script src="javascripts/date.js" type="text/javascript"></script>
+<script src="javascripts/fitvids.js" type="text/javascript"></script>
+<script src="javascripts/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="javascripts/dropzone.js" type="text/javascript"></script>
+<script src="javascripts/main.js" type="text/javascript"></script>
+<script src="javascripts/jwt-decode.js" type="text/javascript"></script>
+<script src="javascripts/xeditable-test.js" type="text/javascript"></script>
+<script type="text/javascript" src="javascripts/bootstrap-datetimepicker.min.js"></script>
+<script src="userindex.js" type="text/javascript"></script>
+</body>
+
+</html>
